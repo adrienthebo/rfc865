@@ -2,7 +2,12 @@
 
 import qotd.server as qs
 
-server = qs.Server(9999)
+def rfc865handler(conn):
+    response = "Hello.\n"
+    msg = bytes(response, 'UTF-8')
+    conn.send(msg)
+
+server = qs.Server(9999, rfc865handler)
 
 server.start()
 

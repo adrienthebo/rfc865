@@ -1,5 +1,3 @@
-# Implement a simple TCP server
-
 import socket
 
 class Server:
@@ -10,8 +8,9 @@ class Server:
     implementations.
     """
 
-    def __init__(self, port):
+    def __init__(self, port, handler):
         self.port = port
+        self.handler = handler
 
     def start(self):
         """
@@ -43,13 +42,6 @@ class Server:
 
     def handle_connection(self, conn, addr):
         print("Handling connection from {0}:{1}".format(addr[0], addr[1]))
-        self.on_accept(conn)
+        self.handler(conn)
         conn.shutdown(socket.SHUT_RDWR)
         conn.close()
-
-    def on_accept(self, conn):
-        msg = "Hello.\n"
-        self.write(conn, bytes(msg, 'UTF-8'))
-
-    def write(self, conn, string):
-        conn.send(string)
