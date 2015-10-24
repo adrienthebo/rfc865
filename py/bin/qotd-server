@@ -1,0 +1,15 @@
+#!/usr/bin/env python3
+
+import qotd.server as qs
+
+server = qs.Server(9999)
+
+server.start()
+
+try:
+    server.run()
+except KeyboardInterrupt:
+    print("SIGINT received.")
+    server.shutdown()
+
+print("Shutting down.")
