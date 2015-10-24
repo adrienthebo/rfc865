@@ -1,13 +1,15 @@
 #!/usr/bin/env python3
 
-import qotd.server as qs
+import tcp.server
+import time
 
-def rfc865handler(conn):
-    response = "Hello.\n"
+def rfc865handler(conn, addr):
+    response = "Hello, {0}. You are using port {1}.\n".format(addr[0], addr[1])
     msg = bytes(response, 'UTF-8')
+    time.sleep(1)
     conn.send(msg)
 
-server = qs.Server(9999, rfc865handler)
+server = tcp.server.Server(9999, rfc865handler)
 
 server.start()
 
