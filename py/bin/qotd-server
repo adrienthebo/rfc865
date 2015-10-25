@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 
 import tcp.server
-from qotd.rfc865 import RFC865
+import qotd.rfc865
 
-server = RFC865(tcp.server.ThreadedServer, 9999)
+server = qotd.rfc865.Server(tcp.server.BasicServer, 9999)
 
 server.start()
 
