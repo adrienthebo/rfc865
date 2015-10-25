@@ -9,7 +9,7 @@ def rfc865handler(conn, addr):
     time.sleep(1)
     conn.send(msg)
 
-server = tcp.server.Server(9999, rfc865handler)
+server = tcp.server.ThreadedServer(9999, rfc865handler)
 
 server.start()
 
