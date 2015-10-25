@@ -3,7 +3,8 @@
 import tcp.server
 import qotd.rfc865
 
-server = qotd.rfc865.Server(tcp.server.BasicServer, 9999)
+handler = qotd.rfc865.Handler()
+server = tcp.server.ThreadedServer(9999, handler.handle)
 
 server.start()
 

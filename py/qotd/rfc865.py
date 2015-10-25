@@ -2,18 +2,13 @@ import json
 import random
 import pprint
 
-class Server:
+class Handler:
     """
-    Blast a random quote at any unsuspecting fool that happened to connect to
-    this server.
+    Send a random text quote to the given connection.
     """
-    def __init__(self, tcpclass, port):
-        self.tcpserver = tcpclass(port, self.handle)
-        self.corpus = read_jargon_file("./resources/jargon_file_glossary.json")
 
-    def start(self): self.tcpserver.start()
-    def shutdown(self): self.tcpserver.shutdown()
-    def run(self): self.tcpserver.run()
+    def __init__(self):
+        self.corpus = read_jargon_file("./resources/jargon_file_glossary.json")
 
     def handle(self, conn, addr):
         msg = bytes(self.nextquote(), "UTF-8")
