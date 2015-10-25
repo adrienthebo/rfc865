@@ -7,8 +7,8 @@ class Handler:
     Send a random text quote to the given connection.
     """
 
-    def __init__(self):
-        self.corpus = read_jargon_file("./resources/jargon_file_glossary.json")
+    def __init__(self, corpus):
+        self.corpus = corpus
 
     def handle(self, conn, addr):
         msg = bytes(self.nextquote(), "UTF-8")

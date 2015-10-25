@@ -3,7 +3,10 @@
 import tcp.server
 import qotd.rfc865
 
-handler = qotd.rfc865.Handler()
+corpus = qotd.rfc865.JargonCorpus("./resources/jargon_file_glossary.json")
+corpus.read()
+
+handler = qotd.rfc865.Handler(corpus)
 server = tcp.server.ThreadedServer(9999, handler.handle)
 
 server.start()
