@@ -17,11 +17,6 @@ class Handler:
     def nextquote(self):
         return self.corpus.random()
 
-def read_jargon_file(path):
-    o = JargonCorpus(path)
-    o.read()
-    return o
-
 class JargonCorpus:
     """
     Load the Jargon file corpus and spit back random quotes from it."
